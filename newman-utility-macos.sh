@@ -2,7 +2,7 @@
 set -e
 
 # ===============================
-# Help
+# Function: show help message
 # ===============================
 usage() {
   echo "Usage: $0 -c collection.json [-e environment.json] -t {count|duration} -n NUM [-d SECONDS] -r {cli|html|allure}"
@@ -10,7 +10,7 @@ usage() {
 }
 
 # ===============================
-# Parse args
+# Argument parsing
 # ===============================
 while [[ "$#" -gt 0 ]]; do
   case $1 in
@@ -26,13 +26,13 @@ while [[ "$#" -gt 0 ]]; do
 done
 
 # ===============================
-# Validate
+# Validation
 # ===============================
 [[ -z "$COLLECTION" || -z "$TYPE" || -z "$RUNS" || -z "$REPORTER" ]] && usage
 [[ "$TYPE" == "duration" && -z "$DURATION" ]] && usage
 
 # ===============================
-# Clear allure dirs if needed
+# Clear allure-results and allure-report
 # ===============================
 if [[ "$REPORTER" == "allure" ]]; then
   echo "🧹 Cleaning allure-results and allure-report..."
@@ -40,7 +40,7 @@ if [[ "$REPORTER" == "allure" ]]; then
 fi
 
 # ===============================
-# Install newman if missing
+# Validating existence of newman
 # ===============================
 if ! command -v newman >/dev/null 2>&1; then
   echo "❌ Newman not found. Installing..."
@@ -48,7 +48,7 @@ if ! command -v newman >/dev/null 2>&1; then
 fi
 
 # ===============================
-# Install reporter if missing
+# Validating existence of reporter
 # ===============================
 case $REPORTER in
   html)
@@ -70,7 +70,7 @@ case $REPORTER in
 esac
 
 # ===============================
-# Run function
+# Function: run loop
 # ===============================
 run_loop() {
   local id=$1
@@ -98,7 +98,7 @@ run_loop() {
 }
 
 # ===============================
-# Run
+# Runner
 # ===============================
 if [[ "$TYPE" == "duration" ]]; then
   END_TIME=$((SECONDS + DURATION))
@@ -108,11 +108,10 @@ fi
 export COLLECTION ENVIRONMENT TYPE REPORTER
 export -f run_loop
 
-# macOS-compatible parallel run
 seq 1 "$RUNS" | xargs -n1 -P"$RUNS" bash -c 'run_loop "$@"' _
 
 # ===============================
-# Generate report
+# Generate Allure report
 # ===============================
 if [[ "$REPORTER" == "allure" ]]; then
   echo "📊 Generating Allure report..."

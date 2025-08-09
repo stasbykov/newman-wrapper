@@ -99,7 +99,7 @@ run_loop() {
 }
 
 # ===============================
-# Runer
+# Runner
 # ===============================
 if [[ "$TYPE" == "duration" ]]; then
   END_TIME=$((SECONDS + DURATION))
