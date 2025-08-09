@@ -1,11 +1,11 @@
-# Newman Utility
+# Newman Wrapper
 
 ![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Newman](https://img.shields.io/badge/built%20with-Newman-FF6C37?logo=postman)
 ![Bash](https://img.shields.io/badge/shell-Bash-4EAA25?logo=gnu-bash)
 
 
-This README describes how to use the `newman-utility-macos.sh` and `newman-utility-linux.sh` scripts, designed for running Postman collections in parallel with report generation.
+This README describes how to use the `newman-wrapper-macos.sh` and `newman-wrapper-linux.sh` scripts, designed for running Postman collections in parallel with report generation.
 
 ## Features
 
@@ -27,27 +27,27 @@ This README describes how to use the `newman-utility-macos.sh` and `newman-utili
 
 ### Make scripts executable:
 ```bash
-chmod +x newman-utility-*.sh
+chmod +x newman-wrapper-*.sh
 ```
 
 ### Run parallel threads
 
 ```bash
-./newman-utility-macos.sh --collection collection.json --type count --runs 3 --reporter cli,html
+./newman-wrapper-macos.sh --collection collection.json --type count --runs 3 --reporter cli,html
 
 or
 
-./newman-utility-linux.sh -c collection.json -t count -n 3 -r cli,html
+./newman-wrapper-linux.sh -c collection.json -t count -n 3 -r cli,html
 ```
 
 ### Run for a specific duration
 
 ```bash
-./newman-utility-linux.sh --collection collection.json --type duration --runs 5 --duration 600 --reporter cli,allure
+./newman-wrapper-linux.sh --collection collection.json --type duration --runs 5 --duration 600 --reporter cli,allure
 
 or
 
-./newman-utility-macos.sh -c collection.json -t duration -n 5 -d 600 -r cli,allure
+./newman-wrapper-macos.sh -c collection.json -t duration -n 5 -d 600 -r cli,allure
 ```
 
 ### Parameters
@@ -68,19 +68,19 @@ Before each run, the script automatically removes the `allure-results` and `allu
 - Run 3 threads with an HTML report:
 
 ```bash
-./newman-utility-macos.sh --collection collection.json --type count --runs 3 --reporter cli,html
+./newman-wrapper-macos.sh --collection collection.json --type count --runs 3 --reporter cli,html
 
 or
 
-./newman-utility-linux.sh -c collection.json -t count -n 3 -r cli,html
+./newman-wrapper-linux.sh -c collection.json -t count -n 3 -r cli,html
 ```
 
 - Run a 10-minute load test with Allure:
 
 ```bash
-./newman-utility-linux.sh --collection collection.json --type duration --runs 5 --duration 600 --reporter cli,allure
+./newman-wrapper-linux.sh --collection collection.json --type duration --runs 5 --duration 600 --reporter cli,allure
 
 or
 
-./newman-utility-macos.sh -c collection.json -t duration -n 5 -d 600 -r cli,allure
+./newman-wrapper-macos.sh -c collection.json -t duration -n 5 -d 600 -r cli,allure
 ```
