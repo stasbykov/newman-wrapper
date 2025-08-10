@@ -26,6 +26,7 @@ This README describes how to use the `newman-wrapper-macos.sh` and `newman-wrapp
 ## Usage
 
 ### Make scripts executable:
+
 ```bash
 chmod +x newman-wrapper-*.sh
 ```
@@ -34,9 +35,9 @@ chmod +x newman-wrapper-*.sh
 
 ```bash
 ./newman-wrapper-macos.sh --collection collection.json --type count --runs 3 --reporter cli,html
-
+````
 or
-
+```bash
 ./newman-wrapper-linux.sh -c collection.json -t count -n 3 -r cli,html
 ```
 
@@ -44,9 +45,9 @@ or
 
 ```bash
 ./newman-wrapper-linux.sh --collection collection.json --type duration --runs 5 --duration 600 --reporter cli,allure
-
+```
 or
-
+```bash
 ./newman-wrapper-macos.sh -c collection.json -t duration -n 5 -d 600 -r cli,allure
 ```
 
@@ -69,9 +70,9 @@ Before each run, the script automatically removes the `allure-results` and `allu
 
 ```bash
 ./newman-wrapper-macos.sh --collection collection.json --type count --runs 3 --reporter cli,html
-
+```
 or
-
+```bash
 ./newman-wrapper-linux.sh -c collection.json -t count -n 3 -r cli,html
 ```
 
@@ -79,8 +80,8 @@ or
 
 ```bash
 ./newman-wrapper-linux.sh --collection collection.json --type duration --runs 5 --duration 600 --reporter cli,allure
-
+```
 or
-
+```bash
 ./newman-wrapper-macos.sh -c collection.json -t duration -n 5 -d 600 -r cli,allure
 ```
